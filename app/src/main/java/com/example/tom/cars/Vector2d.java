@@ -94,6 +94,10 @@ public class Vector2d {
         return this;
     }
 
+    public boolean needsWrapping(float w, float h) {
+        return x>w || y>h;
+    }
+
     public Vector2d subtract(Vector2d v) {
         this.x -= v.x;
         this.y -= v.y;
