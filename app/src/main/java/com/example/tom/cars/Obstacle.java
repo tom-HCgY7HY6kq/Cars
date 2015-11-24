@@ -37,7 +37,7 @@ public class Obstacle {
         rad = minRadius + random.nextInt(randSize);
         s.set(0,0);
         v.set(velocityScale * (float) random.nextGaussian(),
-                7);
+                8);
     }
 
     public int getScore() {
