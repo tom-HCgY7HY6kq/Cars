@@ -20,6 +20,7 @@ public class Obstacle {
     float rad;
     Paint fg;
 
+
     public Obstacle(Paint fg) {
         this();
         this.fg = fg;
@@ -34,8 +35,9 @@ public class Obstacle {
     }
 
     public void reSpawn() {
+        int position = 500 + random.nextInt(3)*200;
         rad = 45;
-        s.set(500,0);
+        s.set(position,0);
         v.set(0,15);
     }
 
