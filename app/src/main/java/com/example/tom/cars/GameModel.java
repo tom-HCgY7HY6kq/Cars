@@ -16,6 +16,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class GameModel {
     CopyOnWriteArrayList<Obstacle> obstacles;
+    Board board;
     int score;
     int timeElapsed = 0;
 
@@ -64,6 +65,7 @@ public class GameModel {
      */
     public GameModel() {
         obstacles = new CopyOnWriteArrayList<>();
+        board = new Board();
         score = 0;
     }
 }

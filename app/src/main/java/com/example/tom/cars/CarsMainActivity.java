@@ -68,7 +68,6 @@ public class CarsMainActivity extends Activity {
             while (running) {
                 try {
                     rect = new Rect(0, 0, view.getWidth(), view.getHeight());
-
                     // System.out.println("Bubble Thread: " + rect);
                     getModel().update(rect, Constants.delay);
                     view.postInvalidate();

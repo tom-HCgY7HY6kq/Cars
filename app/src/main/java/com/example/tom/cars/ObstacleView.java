@@ -25,6 +25,7 @@ public class ObstacleView extends View {
         for (Obstacle o : obstacles) {
             o.draw(g);
         }
+        controller.getModel().board.draw(g);
     }
 
     public ObstacleView(Context context) {
