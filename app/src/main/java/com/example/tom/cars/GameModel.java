@@ -17,7 +17,7 @@ public class GameModel {
     ArrayList<Obstacle> obstacles;
     int nSprites = 1;
     int score;
-    int timeRemaining = 600000;
+    int timeElapsed = 0;
 
     static Paint paintBlue, paintGreen;
 
@@ -39,37 +39,28 @@ public class GameModel {
 
         if (!gameOver()) {
             for (Obstacle o : obstacles) o.update(rect);
-            timeRemaining -= delay;
-        }
-    }
+            timeElapsed += delay;
 
-    public boolean gameOver() {
-        return timeRemaining <= 0;
-    }
-
-    public GameModel() {
-        System.out.println("Bubble GameModel: GameModel()");
-        initSprites();
-        score = 0;
-        System.out.println("Bubble GameModel:  finished in ()");
-    }
-
-    public void click(float x, float y) {
-        for (Obstacle o : obstacles) {
-            if (o.contains(x, y)) {
-                score += o.getScore();
-                o.reSpawn();
-                return;
+            if (timeElapsed >= 1500) {
+                obstacles.add(new BadObstacle(paintGreen));
+                timeElapsed = 0;
             }
+
         }
     }
 
-    void initSprites() {
+    /**
+     * @return Boolean to show whether the game is over.
+     */
+    public boolean gameOver() {
+        return timeElapsed < 0;
+    }
+
+    /**
+     * Initialise obstacles list and score
+     */
+    public GameModel() {
         obstacles = new ArrayList<>();
-        for (int i = 0; i < nSprites; i++) {
-            Paint p = i % 2 == 0 ? paintBlue : paintGreen;
-            obstacles.add(new BadObstacle(p));
-            obstacles.add(new GoodObstacle(p));
-        }
+        score = 0;
     }
 }
