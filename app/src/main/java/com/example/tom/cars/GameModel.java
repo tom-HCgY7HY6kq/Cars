@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -17,7 +16,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class GameModel {
     CopyOnWriteArrayList<Obstacle> obstacles;
-    int nSprites = 1;
     int score;
     int timeElapsed = 0;
 
