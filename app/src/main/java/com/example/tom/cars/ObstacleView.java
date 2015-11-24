@@ -23,7 +23,6 @@ public class ObstacleView extends View {
         List<Obstacle> obstacles = controller.getModel().obstacles;
         // System.out.println(tag + "onDraw: " + sprites.get(0).v + " : " + sprites.get(0).s);
         for (Obstacle o : obstacles) {
-
             o.draw(g);
         }
     }

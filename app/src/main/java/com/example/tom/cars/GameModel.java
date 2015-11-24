@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Description here.
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class GameModel {
-    ArrayList<Obstacle> obstacles;
+    CopyOnWriteArrayList<Obstacle> obstacles;
     int nSprites = 1;
     int score;
     int timeElapsed = 0;
@@ -38,11 +40,14 @@ public class GameModel {
         if (rect.width() <= 0 || rect.height() <= 0) return;
 
         if (!gameOver()) {
-            for (Obstacle o : obstacles) o.update(rect);
+            for (Obstacle o : obstacles) o.update(rect, this);
             timeElapsed += delay;
-
             if (timeElapsed >= 1500) {
-                obstacles.add(new BadObstacle(paintGreen));
+                if (new Random().nextBoolean()) {
+                    obstacles.add(new BadObstacle(paintGreen));
+                } else {
+                    obstacles.add(new GoodObstacle(paintBlue));
+                }
                 timeElapsed = 0;
             }
 
@@ -60,7 +65,7 @@ public class GameModel {
      * Initialise obstacles list and score
      */
     public GameModel() {
-        obstacles = new ArrayList<>();
+        obstacles = new CopyOnWriteArrayList<>();
         score = 0;
     }
 }

@@ -41,15 +41,19 @@ public abstract class Obstacle {
         v.set(0,15);
     }
 
+    public void delete(GameModel model) {
+        model.obstacles.remove(this);
+    }
+
     public int getScore() {
         return fg == GameModel.paintGreen ? greenScore : blueScore;
     }
 
-    public void update(Rect rect) {
+    public void update(Rect rect, GameModel gameModel) {
         s.add(v);
         if (s.needsWrapping(rect.width(), rect.height())) {
             System.out.println("wrapped");
-            reSpawn();
+            this.delete(gameModel);
         }
     }
 
