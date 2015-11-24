@@ -15,7 +15,7 @@ import java.util.Random;
  * @since 19/11/2015
  * @version 1.0
  */
-public class Obstacle {
+public abstract class Obstacle {
     Vector2d s, v;
     float rad;
     Paint fg;
@@ -49,8 +49,8 @@ public class Obstacle {
         s.add(v);
         if (s.needsWrapping(rect.width(), rect.height())) {
             System.out.println("wrapped");
+            reSpawn();
         }
-        s.wrap(rect.width(), rect.height());
     }
 
     public boolean contains(float x, float y) {
@@ -58,6 +58,6 @@ public class Obstacle {
     }
 
     public void draw(Canvas c) {
-        c.drawCircle(s.x, s.y, rad, fg);
+        // Decided whether the object is a square or a circle.
     }
 }

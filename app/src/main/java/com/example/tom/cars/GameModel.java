@@ -68,7 +68,8 @@ public class GameModel {
         obstacles = new ArrayList<>();
         for (int i = 0; i < nSprites; i++) {
             Paint p = i % 2 == 0 ? paintBlue : paintGreen;
-            obstacles.add(new Obstacle(p));
+            obstacles.add(new BadObstacle(p));
+            obstacles.add(new GoodObstacle(p));
         }
     }
 }
