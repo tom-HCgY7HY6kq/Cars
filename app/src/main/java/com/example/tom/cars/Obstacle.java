@@ -34,10 +34,9 @@ public class Obstacle {
     }
 
     public void reSpawn() {
-        rad = minRadius + random.nextInt(randSize);
-        s.set(0,0);
-        v.set(velocityScale * (float) random.nextGaussian(),
-                8);
+        rad = 45;
+        s.set(500,0);
+        v.set(0,15);
     }
 
     public int getScore() {
@@ -46,6 +45,9 @@ public class Obstacle {
 
     public void update(Rect rect) {
         s.add(v);
+        if (s.needsWrapping(rect.width(), rect.height())) {
+            System.out.println("wrapped");
+        }
         s.wrap(rect.width(), rect.height());
     }
 

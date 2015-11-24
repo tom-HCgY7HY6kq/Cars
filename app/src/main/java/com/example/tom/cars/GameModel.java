@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class GameModel {
     ArrayList<Obstacle> obstacles;
-    int nSprites = 20;
+    int nSprites = 1;
     int score;
     int timeRemaining = 600000;
 
@@ -65,7 +65,7 @@ public class GameModel {
     }
 
     void initSprites() {
-        obstacles = new ArrayList<Obstacle>();
+        obstacles = new ArrayList<>();
         for (int i = 0; i < nSprites; i++) {
             Paint p = i % 2 == 0 ? paintBlue : paintGreen;
             obstacles.add(new Obstacle(p));
