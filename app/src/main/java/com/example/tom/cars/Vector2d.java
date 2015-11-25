@@ -94,7 +94,7 @@ public class Vector2d {
         return this;
     }
 
-    public boolean needsWrapping(float w, float h) {
+    public boolean isAtEnd(float w, float h) {
         return x>w || y>h;
     }
 
@@ -141,6 +141,7 @@ public class Vector2d {
         return sqr(x - v.x) + sqr(y - v.y);
     }
 
+    @SuppressWarnings("SuspiciousNameCombination") // Delete later
     public float mag() {
         return (float) Math.sqrt(sqr(x) + sqr(y));
     }

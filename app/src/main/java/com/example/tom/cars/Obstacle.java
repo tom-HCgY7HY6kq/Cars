@@ -4,9 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 
-import static com.example.tom.cars.Constants.*;
-
 import java.util.Random;
+
+import static com.example.tom.cars.Constants.blueScore;
+import static com.example.tom.cars.Constants.greenScore;
 
 /**
  * Description here.
@@ -51,8 +52,7 @@ public abstract class Obstacle {
 
     public void update(Rect rect, GameModel gameModel) {
         s.add(v);
-        if (s.needsWrapping(rect.width(), rect.height())) {
-            System.out.println("wrapped");
+        if (s.isAtEnd(rect.width(), rect.height())) {
             this.delete(gameModel);
         }
     }

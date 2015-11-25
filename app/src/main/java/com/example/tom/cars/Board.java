@@ -1,6 +1,8 @@
 package com.example.tom.cars;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
 
 /**
  * Description here.
@@ -10,14 +12,22 @@ import android.graphics.Canvas;
  * @version 1.0
  */
 public class Board {
-    Vector2d s;
+    int width;
+    int height;
+    Paint background;
+    Paint foreground;
 
-    public Board() {
-        s = new Vector2d();
-        s.set(200, 200);
+    public Board() {}
+
+    public void setDimensions(View view) {
+        width = view.getWidth();
+        height = view.getHeight();
     }
 
     public void draw(Canvas c) {
-        c.drawRect(s.x, 0, s.x+60, s.y+1000, GameModel.paintBlue);
+        int midWidth = width/2;
+        int lineThickness = 20;
+
+        c.drawRect(midWidth, 0, midWidth+lineThickness, height, GameModel.paintBlue);
     }
 }
