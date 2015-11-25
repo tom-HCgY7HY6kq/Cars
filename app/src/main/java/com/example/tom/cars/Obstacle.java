@@ -3,6 +3,7 @@ package com.example.tom.cars;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.View;
 
 import java.util.Random;
 
@@ -18,13 +19,19 @@ import static com.example.tom.cars.Constants.greenScore;
  */
 public abstract class Obstacle {
     Vector2d s, v;
-    float rad;
+    final int rad = 45;
     Paint fg;
+    static int boardWidth;
+    static int boardHeight;
+    static Board board;
 
+    public static void setBoard(Board board) {
+        Obstacle.board = board;
+    }
 
-    public Obstacle(Paint fg) {
-        this();
-        this.fg = fg;
+    public static void setDimensions(View view) {
+        boardWidth = view.getWidth();
+        boardHeight = view.getHeight();
     }
 
     static Random random = new Random();
@@ -32,14 +39,13 @@ public abstract class Obstacle {
     public Obstacle() {
         s = new Vector2d();
         v = new Vector2d();
-        reSpawn();
     }
 
     public void reSpawn() {
-        int position = 500 + random.nextInt(3)*200;
-        rad = 45;
+        int lane = random.nextInt(3);
+        int position = board.getLaneCenter(lane);
         s.set(position,0);
-        v.set(0,15);
+        v.set(0,30);
     }
 
     public void delete(GameModel model) {

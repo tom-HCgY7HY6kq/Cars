@@ -30,6 +30,6 @@ public class BadObstacle extends Obstacle {
      */
     @Override
     public void draw(Canvas c) {
-        c.drawRect(s.x, s.y, s.x+60, s.y+60, fg);
+        c.drawRect(s.x-rad, s.y-rad, s.x+rad, s.y+rad, fg);
     }
 }

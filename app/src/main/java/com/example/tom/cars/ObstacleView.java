@@ -21,10 +21,17 @@ public class ObstacleView extends View {
     public void onDraw(Canvas g) {
         // get the model
         GameModel model = controller.getModel();
+
+        // Set dimensions for characters
         model.board.setDimensions(this);
+        Obstacle.setDimensions(this);
+
+        Obstacle.board = model.board;
+
         model.board.draw(g);
         List<Obstacle> obstacles = model.obstacles;
         // System.out.println(tag + "onDraw: " + sprites.get(0).v + " : " + sprites.get(0).s);
+
         for (Obstacle o : obstacles) {
             o.draw(g);
         }

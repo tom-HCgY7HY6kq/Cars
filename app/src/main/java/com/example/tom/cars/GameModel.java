@@ -50,7 +50,7 @@ public class GameModel {
         if (!gameOver()) {
             for (Obstacle o : obstacles) o.update(rect, this);
             timeElapsed += delay;
-            if (timeElapsed >= 1500) {
+            if (timeElapsed >= 1000) {
                 if (new Random().nextBoolean()) {
                     obstacles.add(new BadObstacle(paintGreen));
                 } else {

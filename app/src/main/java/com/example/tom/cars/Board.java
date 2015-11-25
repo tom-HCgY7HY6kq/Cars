@@ -15,6 +15,8 @@ import android.view.View;
 public class Board {
     int width;
     int height;
+    int lineThickness;
+    int laneThickness;
     static Paint background;
     static Paint foreground;
 
@@ -39,8 +41,8 @@ public class Board {
 
     public void draw(Canvas c) {
         int midWidth = width/2;
-        int lineThickness = 20;
-        int laneThickness = 200;
+        lineThickness = 20;
+        laneThickness = 200;
 
         // Draw the background
         c.drawRect(0, 0, width, height, background);
@@ -54,5 +56,22 @@ public class Board {
         c.drawRect(midL, 0, midL+lineThickness, height, foreground);
         c.drawRect(midR, 0, midR+lineThickness, height, foreground);
         c.drawRect(right, 0, width, height, foreground);
+    }
+
+    public int getLaneCenter(int lane) {
+        int val;
+        switch (lane%3) {
+            case 0:
+                val = (width/2) - (laneThickness + lineThickness);
+                return val;
+            case 1:
+                val = (width/2);
+                return val;
+            case 2:
+                val = (width/2) + (laneThickness + lineThickness);
+                return val;
+            default:
+                return 0;
+        }
     }
 }
