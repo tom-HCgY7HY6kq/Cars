@@ -20,7 +20,8 @@ public class BadObstacle extends Obstacle {
     public BadObstacle() {
         s = new Vector2d();
         v = new Vector2d();
-        super.reSpawn();
+        this.type = ObstacleType.BAD;
+        super.spawn();
     }
 
     /**

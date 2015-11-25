@@ -18,6 +18,7 @@ import static com.example.tom.cars.Constants.greenScore;
  * @version 1.0
  */
 public abstract class Obstacle {
+    ObstacleType type;
     Vector2d s, v;
     final int rad = 45;
     Paint fg;
@@ -41,7 +42,7 @@ public abstract class Obstacle {
         v = new Vector2d();
     }
 
-    public void reSpawn() {
+    public void spawn() {
         int lane = random.nextInt(3);
         int position = board.getLaneCenter(lane);
         s.set(position,0);
