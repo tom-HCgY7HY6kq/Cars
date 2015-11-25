@@ -27,7 +27,7 @@ public class Board {
         background.setAntiAlias(true);
 
         foreground = new Paint();
-        foreground.setColor(Color.BLACK);
+        foreground.setColor(Color.DKGRAY);
         foreground.setStyle(Paint.Style.FILL);
         foreground.setAntiAlias(true);
     }
@@ -40,9 +40,19 @@ public class Board {
     public void draw(Canvas c) {
         int midWidth = width/2;
         int lineThickness = 20;
+        int laneThickness = 200;
 
+        // Draw the background
         c.drawRect(0, 0, width, height, background);
 
-        c.drawRect(midWidth, 0, midWidth+lineThickness, height, foreground);
+        // Draw lane lines
+        int midL = midWidth-laneThickness/2;
+        int midR = midWidth+laneThickness/2;
+        int left = midWidth-3*laneThickness/2 - lineThickness;
+        int right = midWidth+3*laneThickness/2 + lineThickness;
+        c.drawRect(0, 0, left, height, foreground);
+        c.drawRect(midL, 0, midL+lineThickness, height, foreground);
+        c.drawRect(midR, 0, midR+lineThickness, height, foreground);
+        c.drawRect(right, 0, width, height, foreground);
     }
 }
