@@ -1,6 +1,7 @@
 package com.example.tom.cars;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.View;
 
@@ -14,10 +15,22 @@ import android.view.View;
 public class Board {
     int width;
     int height;
-    Paint background;
-    Paint foreground;
+    static Paint background;
+    static Paint foreground;
 
     public Board() {}
+
+    static {
+        background = new Paint();
+        background.setColor(Color.LTGRAY);
+        background.setStyle(Paint.Style.FILL);
+        background.setAntiAlias(true);
+
+        foreground = new Paint();
+        foreground.setColor(Color.BLACK);
+        foreground.setStyle(Paint.Style.FILL);
+        foreground.setAntiAlias(true);
+    }
 
     public void setDimensions(View view) {
         width = view.getWidth();
@@ -28,6 +41,8 @@ public class Board {
         int midWidth = width/2;
         int lineThickness = 20;
 
-        c.drawRect(midWidth, 0, midWidth+lineThickness, height, GameModel.paintBlue);
+        c.drawRect(0, 0, width, height, background);
+
+        c.drawRect(midWidth, 0, midWidth+lineThickness, height, foreground);
     }
 }

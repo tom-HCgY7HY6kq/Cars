@@ -34,6 +34,15 @@ public class GameModel {
         paintGreen.setAntiAlias(true);
     }
 
+    /**
+     * Initialise obstacles list and score
+     */
+    public GameModel() {
+        obstacles = new CopyOnWriteArrayList<>();
+        board = new Board();
+        score = 0;
+    }
+
     public void update(Rect rect, int delay) {
         // check that the drawing rectangle is valid
         if (rect.width() <= 0 || rect.height() <= 0) return;
@@ -60,12 +69,5 @@ public class GameModel {
         return timeElapsed < 0;
     }
 
-    /**
-     * Initialise obstacles list and score
-     */
-    public GameModel() {
-        obstacles = new CopyOnWriteArrayList<>();
-        board = new Board();
-        score = 0;
-    }
+
 }
