@@ -10,7 +10,7 @@ import android.graphics.Paint;
  * @since 24/11/2015
  * @version 1.0
  */
-public class BadObstacle extends Obstacle {
+public class BadObstacle extends Character {
 
     public BadObstacle(Paint fg) {
         this();
@@ -25,7 +25,7 @@ public class BadObstacle extends Obstacle {
     }
 
     /**
-     * Bad obstacles are square.
+     * Bad characters are square.
      *
      * @param c Canvas to draw the obstacle on
      */

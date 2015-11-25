@@ -10,7 +10,7 @@ import android.graphics.Paint;
  * @since 24/11/2015
  * @version 1.0
  */
-public class GoodObstacle extends Obstacle {
+public class GoodObstacle extends Character {
 
     public GoodObstacle(Paint fg) {
         this();
@@ -25,7 +25,7 @@ public class GoodObstacle extends Obstacle {
     }
 
     /**
-     * Good obstacles are circular.
+     * Good characters are circular.
      *
      * @param c to draw the obstacle on.
      */

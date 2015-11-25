@@ -17,7 +17,7 @@ import static com.example.tom.cars.Constants.greenScore;
  * @since 19/11/2015
  * @version 1.0
  */
-public abstract class Obstacle {
+public abstract class Character {
     ObstacleType type;
     Vector2d s, v;
     final int rad = 45;
@@ -27,7 +27,7 @@ public abstract class Obstacle {
     static Board board;
 
     public static void setBoard(Board board) {
-        Obstacle.board = board;
+        Character.board = board;
     }
 
     public static void setDimensions(View view) {
@@ -37,7 +37,7 @@ public abstract class Obstacle {
 
     static Random random = new Random();
 
-    public Obstacle() {
+    public Character() {
         s = new Vector2d();
         v = new Vector2d();
     }
@@ -50,7 +50,7 @@ public abstract class Obstacle {
     }
 
     public void delete(GameModel model) {
-        model.obstacles.remove(this);
+        model.characters.remove(this);
     }
 
     public int getScore() {
