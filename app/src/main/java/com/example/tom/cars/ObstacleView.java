@@ -3,6 +3,7 @@ package com.example.tom.cars;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -37,7 +38,8 @@ public class ObstacleView extends View {
             o.draw(g);
         }
 
-        Drawable d = getResources().getDrawable(R.drawable.car, null);
+
+        Drawable d = ContextCompat.getDrawable(controller, R.drawable.car);
         model.car.setImage(d);
         model.car.draw(g);
 
