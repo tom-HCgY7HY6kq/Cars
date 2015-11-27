@@ -3,6 +3,10 @@ package com.example.tom.cars;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 
 /**
  * Description here.
@@ -19,6 +23,8 @@ public class CarsMainActivity extends Activity {
     // we can kill it from a lifecycle method
     GameThread runner;
     static String tag = "Bubble: ";
+    private GestureDetector gestureDetector;
+    View.OnTouchListener gestureListener;
 
     /**
      * Called when the activity is first created.
@@ -31,6 +37,19 @@ public class CarsMainActivity extends Activity {
         setContentView(view);
         System.out.println(tag + model);
         System.out.println(tag + view);
+
+        // Setup view to detect swipes.
+        gestureDetector = new GestureDetector(this, new SwipeGestureDetector());
+        gestureListener = new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.d("Gesture", "touched");
+                Log.d("Gesture", event.toString());
+
+                return gestureDetector.onTouchEvent(event);
+            }
+        };
+        view.setOnTouchListener(gestureListener);
     }
 
     public GameModel getModel() {
