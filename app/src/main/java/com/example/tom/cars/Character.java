@@ -65,6 +65,12 @@ public abstract class Character {
     }
 
     public boolean contains(float x, float y) {
+        int xN = Math.round(x);
+        int yN = Math.round(y);
+
+        return contains(xN, yN);
+    }
+    public boolean contains(int x, int y) {
         return s.dist(x,y) < rad;
     }
 

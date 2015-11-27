@@ -35,6 +35,8 @@ public class GameModel {
         paintGreen.setAntiAlias(true);
     }
 
+    private boolean gameOver = false;
+
     /**
      * Initialise characters list and score
      */
@@ -50,7 +52,18 @@ public class GameModel {
         if (rect.width() <= 0 || rect.height() <= 0) return;
 
         if (!gameOver()) {
-            for (Character o : characters) o.update(rect, this);
+            for (Character o : characters) {
+                o.update(rect, this);
+                if (car.contains(o.s.x, o.s.y)) {
+                    if (o.type.equals(ObstacleType.BAD)) {
+                        gameOver = true;
+                        System.out.println("GAME OVER!");
+                    } else if (o.type.equals(ObstacleType.GOOD)) {
+                        System.out.println("+1 Points!!");
+                        o.delete(this);
+                    }
+                }
+            }
             timeElapsed += delay;
             if (timeElapsed >= 1000) {
                 if (new Random().nextBoolean()) {
@@ -60,6 +73,7 @@ public class GameModel {
                 }
                 timeElapsed = 0;
             }
+        } else {
         }
     }
 
@@ -67,7 +81,7 @@ public class GameModel {
      * @return Boolean to show whether the game is over.
      */
     public boolean gameOver() {
-        return timeElapsed < 0;
+        return gameOver;
     }
 
 

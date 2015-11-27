@@ -24,17 +24,17 @@ public class Car extends Character {
         image = d;
     }
 
+    @Override
     public void draw(Canvas c) {
-        int start = board.getLaneCenter(0);
+        int startX = board.getLaneCenter(0);
         final int rawImageWidth = 404;
         final int rawImageHeight = 904;
         final int scaledWidth = 150;
         final int scaledHeight = scaledWidth * rawImageHeight/rawImageWidth;
+        s.set(startX, boardHeight-scaledHeight-20);
 
-        image.setBounds(start-scaledWidth/2, boardHeight-scaledHeight-20, start+scaledWidth/2, boardHeight-20);
+        image.setBounds((int) s.x-scaledWidth/2, (int) s.y, (int) s.x+scaledWidth/2, boardHeight-20);
+
         image.draw(c);
     }
-
-
-
 }
