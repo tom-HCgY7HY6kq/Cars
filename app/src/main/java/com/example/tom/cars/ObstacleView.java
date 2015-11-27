@@ -18,19 +18,24 @@ import java.util.List;
  */
 public class ObstacleView extends View {
     CarsMainActivity controller;
+    Board board;
+    Car car;
+
 
     static String tag = "Character View: ";
     public void onDraw(Canvas g) {
         // get the model
         GameModel model = controller.getModel();
+        this.board = model.board;
+        this.car = model.car;
 
         // Set dimensions for characters
-        model.board.setDimensions(this);
+        board.setDimensions(this);
         Character.setDimensions(this);
 
-        Character.board = model.board;
+        Character.board = board;
 
-        model.board.draw(g);
+        board.draw(g);
         List<Character> characters = model.characters;
         // System.out.println(tag + "onDraw: " + sprites.get(0).v + " : " + sprites.get(0).s);
 
@@ -40,8 +45,8 @@ public class ObstacleView extends View {
 
 
         Drawable d = ContextCompat.getDrawable(controller, R.drawable.car);
-        model.car.setImage(d);
-        model.car.draw(g);
+        car.setImage(d);
+        car.draw(g);
 
     }
 

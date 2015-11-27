@@ -43,7 +43,7 @@ public abstract class Character {
     }
 
     public void spawn() {
-        int lane = random.nextInt(3);
+        Lane lane = Lane.getRandomLane();
         int position = board.getLaneCenter(lane);
         s.set(position,0);
         v.set(0,30);

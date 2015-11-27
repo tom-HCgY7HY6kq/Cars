@@ -20,6 +20,7 @@ public class GameModel {
     final Board board;
     int score;
     int timeElapsed = 0;
+    private LaneManager manager;
 
     static Paint paintBlue, paintGreen;
 
@@ -44,6 +45,8 @@ public class GameModel {
         characters = new CopyOnWriteArrayList<>();
         board = new Board();
         car = new Car();
+        manager = new LaneManager();
+        car.setLane(manager.getLane());
         score = 0;
     }
 
@@ -73,6 +76,18 @@ public class GameModel {
                 }
                 timeElapsed = 0;
             }
+            System.out.println(manager.getLane());
+            switch (manager.getLane()) {
+                case LEFT:
+                    car.setLane(Lane.LEFT);
+                    break;
+                case MIDDLE:
+                    car.setLane(Lane.MIDDLE);
+                    break;
+                case RIGHT:
+                    car.setLane(Lane.RIGHT);
+                    break;
+            }
         } else {
         }
     }
@@ -82,6 +97,10 @@ public class GameModel {
      */
     public boolean gameOver() {
         return gameOver;
+    }
+
+    public LaneManager getLaneManager() {
+        return manager;
     }
 
 

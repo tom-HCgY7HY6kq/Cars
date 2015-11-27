@@ -13,6 +13,7 @@ import android.graphics.drawable.Drawable;
  */
 public class Car extends Character {
     Drawable image;
+    Lane lane;
 
     public Car() {}
 
@@ -24,9 +25,13 @@ public class Car extends Character {
         image = d;
     }
 
+    public void setLane(Lane lane) {
+        this.lane = lane;
+    }
+
     @Override
     public void draw(Canvas c) {
-        int startX = board.getLaneCenter(0);
+        int startX = board.getLaneCenter(lane);
         final int rawImageWidth = 404;
         final int rawImageHeight = 904;
         final int scaledWidth = 150;

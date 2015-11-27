@@ -58,16 +58,16 @@ public class Board {
         c.drawRect(right, 0, width, height, foreground);
     }
 
-    public int getLaneCenter(int lane) {
+    public int getLaneCenter(Lane lane) {
         int val;
-        switch (lane%3) {
-            case 0:
+        switch (lane) {
+            case LEFT:
                 val = (width/2) - (laneThickness + lineThickness);
                 return val;
-            case 1:
+            case MIDDLE:
                 val = (width/2);
                 return val;
-            case 2:
+            case RIGHT:
                 val = (width/2) + (laneThickness + lineThickness);
                 return val;
             default:

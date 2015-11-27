@@ -25,6 +25,7 @@ public class CarsMainActivity extends Activity {
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
     SwipeGestureDetector swipey;
+    LaneManager manager;
 
     /**
      * Called when the activity is first created.
@@ -39,7 +40,8 @@ public class CarsMainActivity extends Activity {
         System.out.println(tag + view);
 
         // Setup view to detect swipes.
-        SwipeGestureDetector swipey = new SwipeGestureDetector ();
+        manager = model.getLaneManager();
+        SwipeGestureDetector swipey = new SwipeGestureDetector(manager);
         gestureDetector = new GestureDetector(this, swipey);
         gestureListener = new View.OnTouchListener() {
             @Override

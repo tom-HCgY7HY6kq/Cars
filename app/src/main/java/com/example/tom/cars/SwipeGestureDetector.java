@@ -12,6 +12,12 @@ import android.view.MotionEvent;
  * @version 1.0
  */
 class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
+    private LaneManager manager;
+
+    SwipeGestureDetector(LaneManager manager) {
+        super();
+        this.manager = manager;
+    }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2,
@@ -19,16 +25,18 @@ class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
         switch (getSlope(e1.getX(), e1.getY(), e2.getX(), e2.getY())) {
             case 1:
-                Log.d("Gesture Direction", "up");
+                Log.d("Gesture Lane", "up");
                 return true;
             case 2:
-                Log.d("Gesture Direction", "left");
+                Log.d("Gesture Lane", "left");
+                manager.goLeft();
                 return true;
             case 3:
-                Log.d("Gesture Direction", "down");
+                Log.d("Gesture Lane", "down");
                 return true;
             case 4:
-                Log.d("Gesture Direction", "right");
+                Log.d("Gesture Lane", "right");
+                manager.goRight();
                 return true;
         }
         return false;
@@ -55,5 +63,9 @@ class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
             // right
             return 4;
         return 0;
+    }
+
+    public Lane getLane() {
+        return manager.getLane();
     }
 }
