@@ -62,7 +62,8 @@ public class GameModel {
                         gameOver = true;
                         System.out.println("GAME OVER!");
                     } else if (o.type.equals(ObstacleType.GOOD)) {
-                        System.out.println("+1 Points!!");
+                        score += 1;
+                        System.out.println("Score is: " + String.valueOf(score));
                         o.delete(this);
                     }
                 }
@@ -76,7 +77,6 @@ public class GameModel {
                 }
                 timeElapsed = 0;
             }
-            System.out.println(manager.getLane());
             switch (manager.getLane()) {
                 case LEFT:
                     car.setLane(Lane.LEFT);
