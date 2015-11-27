@@ -15,29 +15,31 @@ class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2,
-                           float velocityX, float velocityY) {
-
-        Log.d("Gesture", "fling called");
+                             float velocityX, float velocityY) {
 
         switch (getSlope(e1.getX(), e1.getY(), e2.getX(), e2.getY())) {
             case 1:
-                Log.d("Direction", "top");
+                Log.d("Gesture Direction", "up");
                 return true;
             case 2:
-                Log.d("Direction", "left");
+                Log.d("Gesture Direction", "left");
                 return true;
             case 3:
-                Log.d("Direction", "down");
+                Log.d("Gesture Direction", "down");
                 return true;
             case 4:
-                Log.d("Direction", "right");
+                Log.d("Gesture Direction", "right");
                 return true;
         }
         return false;
     }
 
+    @Override
+    public boolean onDown(MotionEvent event) {
+        return true;
+    }
+
     private int getSlope(float x1, float y1, float x2, float y2) {
-        Log.d("Gesture", "slope calculated");
 
         Double angle = Math.toDegrees(Math.atan2(y1 - y2, x2 - x1));
         if (angle > 45 && angle <= 135)

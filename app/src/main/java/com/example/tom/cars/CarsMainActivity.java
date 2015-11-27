@@ -3,7 +3,6 @@ package com.example.tom.cars;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,6 +24,7 @@ public class CarsMainActivity extends Activity {
     static String tag = "Bubble: ";
     private GestureDetector gestureDetector;
     View.OnTouchListener gestureListener;
+    SwipeGestureDetector swipey;
 
     /**
      * Called when the activity is first created.
@@ -39,13 +39,11 @@ public class CarsMainActivity extends Activity {
         System.out.println(tag + view);
 
         // Setup view to detect swipes.
-        gestureDetector = new GestureDetector(this, new SwipeGestureDetector());
+        SwipeGestureDetector swipey = new SwipeGestureDetector ();
+        gestureDetector = new GestureDetector(this, swipey);
         gestureListener = new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.d("Gesture", "touched");
-                Log.d("Gesture", event.toString());
-
                 return gestureDetector.onTouchEvent(event);
             }
         };
