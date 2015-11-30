@@ -22,6 +22,8 @@ public class CarsMainActivity extends Activity {
     ObstacleView view;
     GameModel model;
     GameThread runner;
+    // Drawable rectangle for the recording the drawable area of the screen
+    Rect rect;
 
     /**
      * Called when the activity is first created.
@@ -75,9 +77,6 @@ public class CarsMainActivity extends Activity {
             e.printStackTrace();
         }
     }
-
-    // Drawable rectangle for the recording the drawable area of the screen
-    Rect rect;
 
     class GameThread extends Thread {
         boolean running = true;
