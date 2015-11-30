@@ -8,7 +8,6 @@ package com.example.tom.cars;
  * @version 1.0
  */
 public interface Constants {
-    int obstacleRadius = 45;
     int velocity = 30;
     int delay = 50;
     int delayBetweenCars = 1000;
