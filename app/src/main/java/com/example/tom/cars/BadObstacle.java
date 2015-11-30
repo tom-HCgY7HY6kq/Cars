@@ -4,7 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 /**
- * Description here.
+ * An obstacle that the player is trying to avoid.
+ * Square shaped.
  *
  * @author 630022892
  * @since 24/11/2015
@@ -25,7 +26,8 @@ public class BadObstacle extends Character {
     }
 
     /**
-     * Bad characters are square.
+     * Bad characters are square. Square is drawn around a central vector
+     * of s.
      *
      * @param c Canvas to draw the obstacle on
      */
