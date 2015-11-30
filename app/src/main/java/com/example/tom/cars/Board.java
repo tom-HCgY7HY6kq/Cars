@@ -6,22 +6,17 @@ import android.graphics.Paint;
 import android.view.View;
 
 /**
- * Description here.
+ * A class that defines the drawing of the game board.
  *
  * @author 630022892
  * @since 24/11/2015
  * @version 1.0
  */
 public class Board {
-    int width;
-    int height;
-    int lineThickness;
-    int laneThickness;
     static Paint background;
     static Paint foreground;
 
-    public Board() {}
-
+    // Define the paint colours
     static {
         background = new Paint();
         background.setColor(Color.LTGRAY);
@@ -34,6 +29,16 @@ public class Board {
         foreground.setAntiAlias(true);
     }
 
+    final int lineThickness;
+    final int laneThickness;
+    int width;
+    int height;
+
+    public Board() {
+        lineThickness = 20;
+        laneThickness = 200;
+    }
+
     public void setDimensions(View view) {
         width = view.getWidth();
         height = view.getHeight();
@@ -41,8 +46,6 @@ public class Board {
 
     public void draw(Canvas c) {
         int midWidth = width/2;
-        lineThickness = 20;
-        laneThickness = 200;
 
         // Draw the background
         c.drawRect(0, 0, width, height, background);
@@ -58,6 +61,10 @@ public class Board {
         c.drawRect(right, 0, width, height, foreground);
     }
 
+    /**
+     * @param lane The required lane to find the center of.
+     * @return The pixel which is the center of the give Lane
+     */
     public int getLaneCenter(Lane lane) {
         int val;
         switch (lane) {

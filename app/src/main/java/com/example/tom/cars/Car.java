@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
 /**
- * Description here.
+ * The class to define the drawing of the car.
  *
  * @author 630022892
  * @since 25/11/2015
@@ -16,10 +16,6 @@ public class Car extends Character {
     Lane lane;
 
     public Car() {}
-
-    public Car(Drawable d){
-        image = d;
-    }
 
     public void setImage(Drawable d) {
         image = d;
