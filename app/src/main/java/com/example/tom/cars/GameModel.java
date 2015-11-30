@@ -57,7 +57,7 @@ public class GameModel {
      * @param delay Time delay since last update.
      */
     public void update(Rect rect, int delay) {
-        // check that the drawing rectangle is valid
+        // Check that the drawing rectangle is valid
         if (rect.width() <= 0 || rect.width() <= 0) {
             return;
         }

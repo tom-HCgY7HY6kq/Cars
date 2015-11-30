@@ -33,10 +33,13 @@ public class CarsMainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.content_cars_main);
+        Log.d("Startup", "Content View set.");
 
         // Initialise view and model.
         model = new GameModel();
         view = (ObstacleView) findViewById(R.id.game);
+        Log.d("Startup", "Model and View initialised.");
+
 
         // Setup view to detect swipes.
         LaneManager manager = model.getLaneManager();
@@ -50,6 +53,7 @@ public class CarsMainActivity extends Activity {
             }
         };
         view.setOnTouchListener(gestureListener);
+        Log.d("Startup", "Swipe detection enables.");
     }
 
     /**
@@ -62,6 +66,7 @@ public class CarsMainActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+        Log.d("Resume", "Activity resumed.");
 
         rect = new Rect(0, 0, view.getWidth(), view.getHeight());
         runner = new GameThread();
@@ -70,6 +75,8 @@ public class CarsMainActivity extends Activity {
 
     public void onPause() {
         super.onPause();
+        Log.d("Pause", "Activity paused.");
+
         runner.running = false;
         try {
             runner.join();
@@ -82,7 +89,7 @@ public class CarsMainActivity extends Activity {
         boolean running = true;
 
         public void run() {
-            Log.d("Game Thread", "Running Thread");
+            Log.d("Game Thread", "Running Thread...");
             while (running) {
                 try {
                     rect = new Rect(0, 0, view.getWidth(), view.getHeight());
