@@ -2,6 +2,7 @@ package com.example.tom.cars;
 
 
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 
 /**
@@ -37,5 +38,12 @@ public class Car extends Character {
         image.setBounds((int) s.x-scaledWidth/2, (int) s.y, (int) s.x+scaledWidth/2, boardHeight-20);
 
         image.draw(c);
+    }
+
+    @Override
+    public boolean contains(int x, int y) {
+        Rect bounds = image.getBounds();
+
+        return bounds.contains(x, y);
     }
 }
