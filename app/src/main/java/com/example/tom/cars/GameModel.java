@@ -8,20 +8,13 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * Description here.
+ * Model for the game. Holds all of the game logic.
  *
  * @author 630022892
  * @since 19/11/2015
  * @version 1.0
  */
 public class GameModel {
-    final Car car;
-    CopyOnWriteArrayList<Character> characters;
-    final Board board;
-    int score;
-    int timeElapsed = 0;
-    private LaneManager manager;
-
     static Paint paintBlue, paintGreen;
 
     static {
@@ -36,13 +29,20 @@ public class GameModel {
         paintGreen.setAntiAlias(true);
     }
 
+    final Board board;
+    final Car car;
+    CopyOnWriteArrayList<Character> obstacles;
+    int score;
+    int timeElapsed = 0;
+    private LaneManager manager;
     private boolean gameOver = false;
+
 
     /**
      * Initialise characters list and score
      */
     public GameModel() {
-        characters = new CopyOnWriteArrayList<>();
+        obstacles = new CopyOnWriteArrayList<>();
         board = new Board();
         car = new Car();
         manager = new LaneManager();
@@ -50,6 +50,12 @@ public class GameModel {
         score = 0;
     }
 
+    /**
+     * Game logic to update the gamestate.
+     *
+     * @param rect  Drawable area.
+     * @param delay Time delay since last update.
+     */
     public void update(Rect rect, int delay) {
         // check that the drawing rectangle is valid
         if (rect.width() <= 0 || rect.width() <= 0) {
@@ -57,49 +63,55 @@ public class GameModel {
         }
 
         if (!gameOver()) {
-            for (Character o : characters) {
+            for (Character o : obstacles) {
                 o.update(rect, this);
                 if (car.contains(o.s.x, o.s.y)) {
                     if (o.type.equals(ObstacleType.BAD)) {
                         gameOver = true;
-                        System.out.println("GAME OVER!");
                     } else if (o.type.equals(ObstacleType.GOOD)) {
                         score += 1;
-                        System.out.println("Score is: " + String.valueOf(score));
                         o.delete(this);
                     }
                 }
             }
             timeElapsed += delay;
-            if (timeElapsed >= 1000) {
-                if (new Random().nextBoolean()) {
-                    characters.add(new BadObstacle(paintGreen));
-                } else {
-                    characters.add(new GoodObstacle(paintBlue));
-                }
+            if (timeElapsed >= Constants.delayBetweenCars) {
+                addRandomObstacle();
                 timeElapsed = 0;
             }
-            switch (manager.getLane()) {
-                case LEFT:
-                    car.setLane(Lane.LEFT);
-                    break;
-                case MIDDLE:
-                    car.setLane(Lane.MIDDLE);
-                    break;
-                case RIGHT:
-                    car.setLane(Lane.RIGHT);
-                    break;
-            }
+            updateCarLane();
         } else {
         }
     }
 
     /**
-     * @return The current score.
+     * Adds a random obstacle to the ArrayList of obstacles.
      */
-    public int getScore() {
-        return score;
+    public void addRandomObstacle() {
+        if (new Random().nextBoolean()) {
+            obstacles.add(new BadObstacle(paintGreen));
+        } else {
+            obstacles.add(new GoodObstacle(paintBlue));
+        }
     }
+
+    /**
+     * Updates the car lane according to the lane stored in the LaneManager
+     */
+    public void updateCarLane() {
+        switch (manager.getLane()) {
+            case LEFT:
+                car.setLane(Lane.LEFT);
+                break;
+            case MIDDLE:
+                car.setLane(Lane.MIDDLE);
+                break;
+            case RIGHT:
+                car.setLane(Lane.RIGHT);
+                break;
+        }
+    }
+
 
     /**
      * @return Boolean to show whether the game is over.
@@ -112,5 +124,7 @@ public class GameModel {
         return manager;
     }
 
-
+    public int getScore() {
+        return score;
+    }
 }

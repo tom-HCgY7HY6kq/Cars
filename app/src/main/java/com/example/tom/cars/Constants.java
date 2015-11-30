@@ -8,16 +8,10 @@ package com.example.tom.cars;
  * @version 1.0
  */
 public interface Constants {
-    int minRadius = 10;
-    int randSize = 40;
-
-    int blueScore = -50;
-    int greenScore = 10;
-
-    float velocityScale = 5;
-    String highScoreFile = "highScore.txt";
-
+    int obstacleRadius = 45;
+    int velocity = 30;
     int delay = 50;
+    int delayBetweenCars = 1000;
 }
 
 

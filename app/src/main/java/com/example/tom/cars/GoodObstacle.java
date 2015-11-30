@@ -14,7 +14,7 @@ public class GoodObstacle extends Character {
 
     public GoodObstacle(Paint fg) {
         this();
-        this.fg = fg;
+        this.paint = fg;
     }
 
     public GoodObstacle() {
@@ -31,6 +31,6 @@ public class GoodObstacle extends Character {
      */
     @Override
     public void draw(Canvas c) {
-        c.drawCircle(s.x, s.y, rad, fg);
+        c.drawCircle(s.x, s.y, rad, paint);
     }
 }

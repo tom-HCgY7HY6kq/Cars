@@ -5,29 +5,25 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
-import java.util.Random;
-
-import static com.example.tom.cars.Constants.blueScore;
-import static com.example.tom.cars.Constants.greenScore;
-
 /**
- * Description here.
+ * Defines a character in the game.
  *
  * @author 630022892
  * @since 19/11/2015
  * @version 1.0
  */
 public abstract class Character {
-    ObstacleType type;
-    Vector2d s, v;
-    final int rad = 45;
-    Paint fg;
     static int boardWidth;
     static int boardHeight;
     static Board board;
+    final int rad = Constants.obstacleRadius;
+    ObstacleType type;
+    Vector2d s, v;
+    Paint paint;
 
-    public static void setBoard(Board board) {
-        Character.board = board;
+    public Character() {
+        s = new Vector2d();
+        v = new Vector2d();
     }
 
     public static void setDimensions(View view) {
@@ -35,26 +31,26 @@ public abstract class Character {
         boardHeight = view.getHeight();
     }
 
-    static Random random = new Random();
-
-    public Character() {
-        s = new Vector2d();
-        v = new Vector2d();
-    }
-
+    /**
+     * Spawns a character in a random lane with a downward velocity of 30.
+     */
     public void spawn() {
+        final int downVelocity = Constants.velocity;
+
         Lane lane = Lane.getRandomLane();
         int position = board.getLaneCenter(lane);
+
         s.set(position,0);
-        v.set(0,30);
+        v.set(0, downVelocity);
     }
 
+    /**
+     * Removes this character from the game model.
+     *
+     * @param model Current model
+     */
     public void delete(GameModel model) {
-        model.characters.remove(this);
-    }
-
-    public int getScore() {
-        return fg == GameModel.paintGreen ? greenScore : blueScore;
+        model.obstacles.remove(this);
     }
 
     public void update(Rect rect, GameModel gameModel) {
@@ -70,11 +66,16 @@ public abstract class Character {
 
         return contains(xN, yN);
     }
+
     public boolean contains(int x, int y) {
         return s.dist(x,y) < rad;
     }
 
+    /**
+     * Drawing is decided with each type of character.
+     *
+     * @param c Canvas to draw on
+     */
     public void draw(Canvas c) {
-        // Decided whether the object is a square or a circle.
     }
 }
