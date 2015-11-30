@@ -22,24 +22,29 @@ class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2,
                              float velocityX, float velocityY) {
-
-        switch (getSlope(e1.getX(), e1.getY(), e2.getX(), e2.getY())) {
-            case 1:
-                Log.d("Gesture Lane", "up");
-                return true;
-            case 2:
-                Log.d("Gesture Lane", "left");
-                manager.goLeft();
-                return true;
-            case 3:
-                Log.d("Gesture Lane", "down");
-                return true;
-            case 4:
-                Log.d("Gesture Lane", "right");
-                manager.goRight();
-                return true;
+        try {
+            switch (getSlope(e1.getX(), e1.getY(), e2.getX(), e2.getY())) {
+                case 1:
+                    Log.d("Gesture Lane", "up");
+                    return true;
+                case 2:
+                    Log.d("Gesture Lane", "left");
+                    manager.goLeft();
+                    return true;
+                case 3:
+                    Log.d("Gesture Lane", "down");
+                    return true;
+                case 4:
+                    Log.d("Gesture Lane", "right");
+                    manager.goRight();
+                    return true;
+            }
+            return false;
+            // A NullPointerException will occur if a swipe is made whilst the
+            // game is ending
+        } catch (NullPointerException e) {
+            return false;
         }
-        return false;
     }
 
     @Override

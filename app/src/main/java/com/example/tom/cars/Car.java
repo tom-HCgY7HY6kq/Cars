@@ -44,6 +44,6 @@ public class Car extends Character {
     public boolean contains(int x, int y) {
         Rect bounds = image.getBounds();
 
-        return bounds.contains(x, y);
+        return bounds.contains(x, y + rad / 2);
     }
 }

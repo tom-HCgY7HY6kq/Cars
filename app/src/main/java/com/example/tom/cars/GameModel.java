@@ -29,8 +29,8 @@ public class GameModel {
         paintGreen.setAntiAlias(true);
     }
 
-    final Board board;
-    final Car car;
+    Board board;
+    Car car;
     CopyOnWriteArrayList<Character> obstacles;
     int score;
     int timeElapsed = 0;
@@ -50,16 +50,24 @@ public class GameModel {
         score = 0;
     }
 
+    public void resetGame() {
+        obstacles = new CopyOnWriteArrayList<>();
+        board = new Board();
+        car = new Car();
+        manager = new LaneManager();
+        car.setLane(manager.getLane());
+    }
+
     /**
      * Game logic to update the gamestate.
      *
      * @param rect  Drawable area.
      * @param delay Time delay since last update.
      */
-    public void update(Rect rect, int delay) {
+    public boolean update(Rect rect, int delay) {
         // Check that the drawing rectangle is valid
         if (rect.width() <= 0 || rect.width() <= 0) {
-            return;
+            return true;
         }
 
         if (!gameOver()) {
@@ -80,7 +88,9 @@ public class GameModel {
                 timeElapsed = 0;
             }
             updateCarLane();
+            return true;
         } else {
+            return false;
         }
     }
 
@@ -126,5 +136,9 @@ public class GameModel {
 
     public int getScore() {
         return score;
+    }
+
+    public void resetScore() {
+        score = 0;
     }
 }
