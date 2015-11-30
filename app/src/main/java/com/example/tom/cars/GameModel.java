@@ -52,7 +52,9 @@ public class GameModel {
 
     public void update(Rect rect, int delay) {
         // check that the drawing rectangle is valid
-        if (rect.width() <= 0 || rect.height() <= 0) return;
+        if (rect.width() <= 0 || rect.width() <= 0) {
+            return;
+        }
 
         if (!gameOver()) {
             for (Character o : characters) {
@@ -90,6 +92,13 @@ public class GameModel {
             }
         } else {
         }
+    }
+
+    /**
+     * @return The current score.
+     */
+    public int getScore() {
+        return score;
     }
 
     /**
