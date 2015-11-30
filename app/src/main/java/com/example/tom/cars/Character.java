@@ -16,7 +16,7 @@ public abstract class Character {
     static int boardWidth;
     static int boardHeight;
     static Board board;
-    final int rad = Constants.obstacleRadius;
+    static int rad;
     ObstacleType type;
     Vector2d s, v;
     Paint paint;
@@ -29,6 +29,7 @@ public abstract class Character {
     public static void setDimensions(View view) {
         boardWidth = view.getWidth();
         boardHeight = view.getHeight();
+        rad = boardWidth / 20;
     }
 
     /**

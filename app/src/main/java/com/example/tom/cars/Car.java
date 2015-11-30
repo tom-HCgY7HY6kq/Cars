@@ -31,7 +31,7 @@ public class Car extends Character {
         int startX = board.getLaneCenter(lane);
         final int rawImageWidth = 404;
         final int rawImageHeight = 904;
-        final int scaledWidth = 150;
+        final int scaledWidth = 3 * board.laneThickness / 4;
         final int scaledHeight = scaledWidth * rawImageHeight/rawImageWidth;
         s.set(startX, boardHeight-scaledHeight-20);
 

@@ -29,19 +29,19 @@ public class Board {
         foreground.setAntiAlias(true);
     }
 
-    final int lineThickness;
-    final int laneThickness;
+    int lineThickness;
+    int laneThickness;
     int width;
     int height;
 
     public Board() {
-        lineThickness = 20;
-        laneThickness = 200;
     }
 
     public void setDimensions(View view) {
         width = view.getWidth();
         height = view.getHeight();
+        lineThickness = width / 60;
+        laneThickness = width / 5;
     }
 
     public void draw(Canvas c) {
@@ -51,10 +51,10 @@ public class Board {
         c.drawRect(0, 0, width, height, background);
 
         // Draw lane lines
-        int midL = midWidth-laneThickness/2;
-        int midR = midWidth+laneThickness/2;
-        int left = midWidth-3*laneThickness/2 - lineThickness;
-        int right = midWidth+3*laneThickness/2 + lineThickness;
+        int midL = midWidth - laneThickness / 2 - lineThickness / 2;
+        int midR = midWidth + laneThickness / 2 - lineThickness / 2;
+        int left = midWidth - 3 * laneThickness / 2 - 3 * lineThickness / 2;
+        int right = midWidth + 3 * laneThickness / 2 + 3 * lineThickness / 2;
         c.drawRect(0, 0, left, height, foreground);
         c.drawRect(midL, 0, midL+lineThickness, height, foreground);
         c.drawRect(midR, 0, midR+lineThickness, height, foreground);
