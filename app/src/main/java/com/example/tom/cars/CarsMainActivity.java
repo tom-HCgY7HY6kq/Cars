@@ -1,9 +1,9 @@
 package com.example.tom.cars;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,11 +29,12 @@ public class CarsMainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        model = new GameModel();
+
         setContentView(R.layout.content_cars_main);
 
+        // Initialise view and model.
+        model = new GameModel();
         view = (ObstacleView) findViewById(R.id.game);
-//        setContentView(view);
 
         // Setup view to detect swipes.
         LaneManager manager = model.getLaneManager();
@@ -59,10 +60,8 @@ public class CarsMainActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        System.out.println("Bubble: onResume: ");
-        view.measure(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        rect = new Rect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-        System.out.println("Bubble: onResume: " + rect);
+
+        rect = new Rect(0, 0, view.getWidth(), view.getHeight());
         runner = new GameThread();
         runner.start();
     }
@@ -84,13 +83,14 @@ public class CarsMainActivity extends Activity {
         boolean running = true;
 
         public void run() {
-            System.out.println("Running thread ...");
+            Log.d("Game Thread", "Running Thread");
             while (running) {
                 try {
                     rect = new Rect(0, 0, view.getWidth(), view.getHeight());
-                    // System.out.println("Bubble Thread: " + rect);
                     getModel().update(rect, Constants.delay);
                     view.postInvalidate();
+
+                    // Update the score.
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
