@@ -10,7 +10,7 @@ import android.view.View;
 import java.util.List;
 
 /**
- * Description here.
+ * Class to hold the view of the game.
  *
  * @author 630022892
  * @since 19/11/2015
@@ -21,34 +21,6 @@ public class ObstacleView extends View {
     Board board;
     Car car;
 
-
-    static String tag = "Character View: ";
-    public void onDraw(Canvas g) {
-        // get the model
-        GameModel model = controller.getModel();
-        this.board = model.board;
-        this.car = model.car;
-
-        // Set dimensions for characters
-        board.setDimensions(this);
-        Character.setDimensions(this);
-
-        Character.board = board;
-
-        board.draw(g);
-        List<Character> characters = model.characters;
-        // System.out.println(tag + "onDraw: " + sprites.get(0).v + " : " + sprites.get(0).s);
-
-        for (Character o : characters) {
-            o.draw(g);
-        }
-
-
-        Drawable d = ContextCompat.getDrawable(controller, R.drawable.car);
-        car.setImage(d);
-        car.draw(g);
-
-    }
 
     public ObstacleView(Context context) {
         super(context);
@@ -63,5 +35,29 @@ public class ObstacleView extends View {
     public ObstacleView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.controller = (CarsMainActivity) context;
+    }
+
+    public void onDraw(Canvas g) {
+        // get the model
+        GameModel model = controller.getModel();
+        this.board = model.board;
+        this.car = model.car;
+        List<Character> obstacles = model.obstacles;
+
+        // Set dimensions for characters
+        board.setDimensions(this);
+        Character.setDimensions(this);
+
+        Character.board = board;
+
+        // Draw the board and characters.
+        board.draw(g);
+        for (Character o : obstacles) {
+            o.draw(g);
+        }
+        Drawable d = ContextCompat.getDrawable(controller, R.drawable.car);
+        car.setImage(d);
+        car.draw(g);
+
     }
 }

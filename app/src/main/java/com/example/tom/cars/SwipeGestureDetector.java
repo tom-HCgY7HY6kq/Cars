@@ -5,7 +5,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 /**
- * Description here.
+ * A detector to detect swipes on the screen.
  *
  * @author 630022892
  * @since 27/11/2015
@@ -47,11 +47,21 @@ class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
         return true;
     }
 
+    /**
+     * Calculates the slope of a swipe give the start and end coordinates of
+     * the swipe.
+     *
+     * @param x1 Start x coordinate.
+     * @param y1 Start y coordinate.
+     * @param x2 End x coordinate.
+     * @param y2 End y coordinate.
+     * @return Slope of the swipe.
+     */
     private int getSlope(float x1, float y1, float x2, float y2) {
 
         Double angle = Math.toDegrees(Math.atan2(y1 - y2, x2 - x1));
         if (angle > 45 && angle <= 135)
-            // top
+            // up
             return 1;
         if (angle >= 135 && angle < 180 || angle < -135 && angle > -180)
             // left
@@ -63,9 +73,5 @@ class SwipeGestureDetector extends GestureDetector.SimpleOnGestureListener {
             // right
             return 4;
         return 0;
-    }
-
-    public Lane getLane() {
-        return manager.getLane();
     }
 }

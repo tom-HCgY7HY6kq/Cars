@@ -1,7 +1,7 @@
 package com.example.tom.cars;
 
 /**
- * Description here.
+ * Keeps track of which lane the car should be in.
  *
  * @author 630022892
  * @since 27/11/2015
@@ -10,10 +10,16 @@ package com.example.tom.cars;
 public class LaneManager {
     private Lane lane;
 
+    /**
+     * Starting lane for a new car is the left lane.
+     */
     public LaneManager() {
         this.lane = Lane.LEFT;
     }
 
+    /**
+     * Moves the car one lane to the right.
+     */
     public void goLeft() {
         switch (lane) {
             case LEFT:
@@ -27,6 +33,9 @@ public class LaneManager {
         }
     }
 
+    /**
+     * Moves the car one lane to the right.
+     */
     public void goRight() {
         switch (lane) {
             case LEFT:
