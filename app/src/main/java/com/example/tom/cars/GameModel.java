@@ -50,16 +50,8 @@ public class GameModel {
         score = 0;
     }
 
-    public void resetGame() {
-        obstacles = new CopyOnWriteArrayList<>();
-        board = new Board();
-        car = new Car();
-        manager = new LaneManager();
-        car.setLane(manager.getLane());
-    }
-
     /**
-     * Game logic to update the gamestate.
+     * Game logic to update the game-state.
      *
      * @param rect  Drawable area.
      * @param delay Time delay since last update.

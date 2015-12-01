@@ -29,8 +29,12 @@
         android:layout_alignParentEnd="false"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:paddingRight="16px"
-        android:paddingTop="16px"
+        android:layout_toEndOf="@+id/help"
+        android:layout_toRightOf="@+id/help"
+        android:paddingEnd="16dp"
+        android:paddingRight="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#fff" />
 

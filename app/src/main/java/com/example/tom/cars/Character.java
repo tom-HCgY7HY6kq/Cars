@@ -5,6 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.view.View;
 
+import java.util.Random;
+
 /**
  * Defines a character in the game.
  *
@@ -40,9 +42,9 @@ public abstract class Character {
 
         Lane lane = Lane.getRandomLane();
         int position = board.getLaneCenter(lane);
-
+        Random r = new Random();
         s.set(position,0);
-        v.set(0, downVelocity);
+        v.set(0, downVelocity - 20 + r.nextInt(30));
     }
 
     /**

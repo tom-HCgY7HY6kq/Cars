@@ -53,9 +53,9 @@ public class CarsMainActivity extends Activity {
 
         // Setup view to detect swipes.
         LaneManager manager = model.getLaneManager();
-        SwipeGestureDetector swipey = new SwipeGestureDetector(manager);
+        SwipeGestureDetector swipeDetector = new SwipeGestureDetector(manager);
         final GestureDetector gestureDetector =
-                new GestureDetector(this, swipey);
+                new GestureDetector(this, swipeDetector);
         OnTouchListener gestureListener = new OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -141,7 +141,6 @@ public class CarsMainActivity extends Activity {
                             t.setText(String.valueOf(getModel().getScore()));
                         }
                     });
-
                     Thread.sleep(Constants.delay);
                 } catch (Exception e) {
                     System.out.println("BubbleThread: " + e);
@@ -160,9 +159,9 @@ public class CarsMainActivity extends Activity {
         private void resetGame() {
             model = new GameModel();
             LaneManager manager = model.getLaneManager();
-            SwipeGestureDetector swipey = new SwipeGestureDetector(manager);
+            SwipeGestureDetector swipeDetector = new SwipeGestureDetector(manager);
             final GestureDetector gestureDetector =
-                    new GestureDetector(CarsMainActivity.this, swipey);
+                    new GestureDetector(CarsMainActivity.this, swipeDetector);
             OnTouchListener gestureListener = new OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
