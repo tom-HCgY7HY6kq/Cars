@@ -35,16 +35,16 @@ public abstract class Character {
     }
 
     /**
-     * Spawns a character in a random lane with a downward velocity of 30.
+     * Spawns a character in a random lane with a downward minVelocity of 10.
      */
     public void spawn() {
-        final int downVelocity = Constants.velocity;
+        Random r = new Random();
+        final int downVelocity = Constants.minVelocity + r.nextInt(30);
 
         Lane lane = Lane.getRandomLane();
         int position = board.getLaneCenter(lane);
-        Random r = new Random();
         s.set(position,0);
-        v.set(0, downVelocity - 20 + r.nextInt(30));
+        v.set(0, downVelocity);
     }
 
     /**
