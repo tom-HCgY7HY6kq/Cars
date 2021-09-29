@@ -11,6 +11,7 @@ public interface Constants {
     int minVelocity = 10;
     int delay = 50;
     int delayBetweenCars = 1000;
+	int testInteger = 1337;
 }
 
 
